@@ -1,9 +1,16 @@
-import { PrismaClient } from '@prisma/client';
+import 'dotenv/config';
+
+import { PrismaClient } from '../generated/prisma/client';
 import * as bcrypt from 'bcrypt';
+import { PrismaPg } from '@prisma/adapter-pg';
+
+const connectionString = `${process.env.DATABASE_URL}`;
+
+const adapter = new PrismaPg({ connectionString });
 
 const roundsOfHashing = 10;
 // initialize the Prisma Client
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ adapter });
 async function main() {
   const passwordSabin = await bcrypt.hash('password-sabin', roundsOfHashing);
   const passwordAlex = await bcrypt.hash('password-alex', roundsOfHashing);

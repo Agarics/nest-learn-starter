@@ -1,6 +1,6 @@
 // src/articles/entities/article.entity.ts
 
-import { Article } from '@prisma/client';
+import { Article } from 'generated/prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 import { UserEntity } from 'src/users/entities/user.entity';
 
